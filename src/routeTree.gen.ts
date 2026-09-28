@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthorRouteImport } from './routes/author'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as BuyRouteImport } from './routes/buy'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ExcerptRouteImport } from './routes/excerpt'
+import { Route as SeriesRouteImport } from './routes/series'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthorRoute = AuthorRouteImport.update({
+  id: '/author',
+  path: '/author',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuyRoute = BuyRouteImport.update({
+  id: '/buy',
+  path: '/buy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExcerptRoute = ExcerptRouteImport.update({
+  id: '/excerpt',
+  path: '/excerpt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeriesRoute = SeriesRouteImport.update({
+  id: '/series',
+  path: '/series',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/author': typeof AuthorRoute
+  '/book': typeof BookRoute
+  '/buy': typeof BuyRoute
+  '/contact': typeof ContactRoute
+  '/excerpt': typeof ExcerptRoute
+  '/series': typeof SeriesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/author': typeof AuthorRoute
+  '/book': typeof BookRoute
+  '/buy': typeof BuyRoute
+  '/contact': typeof ContactRoute
+  '/excerpt': typeof ExcerptRoute
+  '/series': typeof SeriesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/author': typeof AuthorRoute
+  '/book': typeof BookRoute
+  '/buy': typeof BuyRoute
+  '/contact': typeof ContactRoute
+  '/excerpt': typeof ExcerptRoute
+  '/series': typeof SeriesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/author' | '/book' | '/buy' | '/contact' | '/excerpt' | '/series'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/author' | '/book' | '/buy' | '/contact' | '/excerpt' | '/series'
+  id:
+    | '__root__'
+    | '/'
+    | '/author'
+    | '/book'
+    | '/buy'
+    | '/contact'
+    | '/excerpt'
+    | '/series'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthorRoute: typeof AuthorRoute
+  BookRoute: typeof BookRoute
+  BuyRoute: typeof BuyRoute
+  ContactRoute: typeof ContactRoute
+  ExcerptRoute: typeof ExcerptRoute
+  SeriesRoute: typeof SeriesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/author': {
+      id: '/author'
+      path: '/author'
+      fullPath: '/author'
+      preLoaderRoute: typeof AuthorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/buy': {
+      id: '/buy'
+      path: '/buy'
+      fullPath: '/buy'
+      preLoaderRoute: typeof BuyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/excerpt': {
+      id: '/excerpt'
+      path: '/excerpt'
+      fullPath: '/excerpt'
+      preLoaderRoute: typeof ExcerptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/series': {
+      id: '/series'
+      path: '/series'
+      fullPath: '/series'
+      preLoaderRoute: typeof SeriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthorRoute: AuthorRoute,
+  BookRoute: BookRoute,
+  BuyRoute: BuyRoute,
+  ContactRoute: ContactRoute,
+  ExcerptRoute: ExcerptRoute,
+  SeriesRoute: SeriesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
